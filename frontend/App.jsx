@@ -1,8 +1,8 @@
-jsx
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Chat from "./pages/Chat";
 import LoginRegister from "./pages/LoginRegister";
 import Projects from "./pages/Projects";
+import AssistantGPT from "./pages/AssistantGPT"; // ✅ ajouté
 import Navbar from "./components/Navbar";
 
 function PrivateRoute({ children }) {
@@ -18,10 +18,8 @@ export default function App() {
         <Route path="/" element={<LoginRegister />} />
         <Route path="/chat" element={<PrivateRoute><Chat /></PrivateRoute>} />
         <Route path="/projects" element={<PrivateRoute><Projects /></PrivateRoute>} />
+        <Route path="/assistant" element={<PrivateRoute><AssistantGPT /></PrivateRoute>} /> {/* ✅ ajout */}
       </Routes>
     </Router>
   );
 }
-
-
----
