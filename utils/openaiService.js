@@ -1,4 +1,3 @@
-js
 import OpenAI from "openai";
 
 const openai = new OpenAI({
@@ -8,7 +7,7 @@ const openai = new OpenAI({
 export async function askOpenAI(prompt) {
   try {
     const completion = await openai.chat.completions.create({
-      model: "gpt-4o",
+      model: "gpt-4o", // Assure-toi que ce modèle est disponible pour toi
       messages: [{ role: "user", content: prompt }],
     });
 
@@ -18,7 +17,3 @@ export async function askOpenAI(prompt) {
     throw error;
   }
 }
-
-
----
-

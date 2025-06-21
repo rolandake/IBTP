@@ -1,4 +1,3 @@
-js
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
@@ -14,9 +13,9 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Rate limiting (ex: 60 requêtes/minute)
+// Rate limiting (exemple : 60 requêtes / minute)
 const limiter = rateLimit({
-  windowMs: 1 * 60 * 1000,
+  windowMs: 1 * 60 * 1000, // 1 minute
   max: 60,
 });
 
@@ -31,7 +30,10 @@ app.use("/api/gpt", gptRoutes);
 
 // Connexion MongoDB
 mongoose
-  .connect(process.env.MONGO_URI)
+  .connect(process.env.MONGODB_URI || process.env.MONGO_URI, { 
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
   .then(() => {
     console.log("✅ MongoDB connecté");
     app.listen(PORT, () => console.log(`🚀 Serveur sur le port ${PORT}`));
@@ -39,4 +41,3 @@ mongoose
   .catch((err) => {
     console.error("❌ Erreur MongoDB :", err);
   });
-
