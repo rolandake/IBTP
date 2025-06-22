@@ -28,6 +28,11 @@ app.use(cors());
 app.use(limiter);
 app.use(express.json());
 
+// Route racine simple pour test
+app.get("/", (req, res) => {
+  res.send("Bienvenue sur l'API BTP IA !");
+});
+
 // Routes API
 app.use("/api/auth", authRoutes);
 app.use("/api/projects", projectsRoutes);
